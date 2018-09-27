@@ -1,0 +1,23 @@
+<% if params[:completed] == "true" %>
+  <h1 class="completed-tasks">Completed Tasks</h1>
+<% else %>
+  <h1 class="pending-tasks">Pending Tasks</h1>
+<% end %>
+
+<table class="table">
+
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.description %></td>
+        <td><%= render 'completed_form', task: task %></td>
+        <td><%= link_to 'Destroy', task, method: :delete, class: "btn btn-danger float-right", data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr>
+
+<%= render 'form', task: @task %>
